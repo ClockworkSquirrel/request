@@ -10,8 +10,9 @@ The `request` library is available in the [releases tab](../../releases/latest).
 1. [Basic Usage](#basic-usage)
 2. [Asynchronous Usage](#asynchronous-usage)
 3. [Advanced Usage](#advanced-usage)
-4. [Request Options](#request-options)
-5. [Response Table](#response-table)
+4. [Convenience Methods](#convenience-methods)
+5. [Request Options](#request-options)
+6. [Response Table](#response-table)
 
 ## Basic Usage
 ```lua
@@ -66,6 +67,27 @@ end)
 > **Output**\
 > `Response status code: 200`\
 > `Response body: version-1086667668c048ce`
+
+## Convenience Methods
+### `request.default(options)`
+Returns the `request` API with default options set. The returned API can then be used as normal.
+
+```lua
+local apiRequest = request.default({
+    baseUrl = "https://api.example.com/v2",
+    headers = {
+        Authorization = "token 1302e4ff31ff4899878efcc5bba2bd44"
+    }
+})
+
+apiRequest({
+    url = "/hello-world",
+    method = "PUT",
+    body = "can you hear me?"
+}, function(err, response, body)
+    -- Do stuff.
+end)
+```
 
 -----
 
